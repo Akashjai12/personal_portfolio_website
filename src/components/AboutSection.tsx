@@ -9,10 +9,13 @@ export const AboutSection: React.FC = () => {
           
           {/* Left Column: Index & Heading */}
           <div className="lg:col-span-4">
-            <span className="text-xs font-mono tracking-widest text-slate-400 uppercase block mb-1.5">
-              01 / PROFILE
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 inline-block" />
+              <span className="text-xs font-mono tracking-widest text-indigo-700 font-semibold uppercase block">
+                01 / PROFILE
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               About Me
             </h2>
           </div>
@@ -28,14 +31,14 @@ export const AboutSection: React.FC = () => {
             </p>
 
             {/* Academic & Personal Record Container */}
-            <div className="border border-slate-200 mt-8 bg-white/95 shadow-xs">
-              {/* Header Bar with light indigo tint */}
-              <div className="px-5 py-3 border-b border-slate-200 bg-gradient-to-r from-slate-50 via-indigo-50/30 to-blue-50/20 flex items-center justify-between">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-slate-600 font-semibold flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 bg-blue-600 inline-block" />
+            <div className="border border-indigo-100/90 mt-8 bg-white/95 rounded-sm shadow-md shadow-indigo-100/20 overflow-hidden">
+              {/* Header Bar with light elegant tint */}
+              <div className="px-5 py-3 border-b border-indigo-100/80 bg-gradient-to-r from-indigo-50/70 via-sky-50/50 to-blue-50/30 flex items-center justify-between">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-indigo-950 font-semibold flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 inline-block" />
                   PERSONAL INFORMATION & ACADEMIC RECORD
                 </span>
-                <span className="text-[10px] font-mono text-blue-700 bg-blue-50 px-2 py-0.5 border border-blue-100 font-semibold">
+                <span className="text-[10px] font-mono text-indigo-700 bg-white/90 px-2.5 py-0.5 rounded border border-indigo-200/60 font-semibold shadow-2xs">
                   MUMBAI UNIVERSITY
                 </span>
               </div>

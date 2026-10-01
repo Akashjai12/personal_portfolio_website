@@ -14,10 +14,13 @@ export const CertificatesSection: React.FC = () => {
           
           {/* Left Column (Main Section Header) */}
           <div className="lg:col-span-4">
-            <span className="text-xs font-mono tracking-widest text-slate-400 uppercase block mb-1.5">
-              04 / VERIFICATION
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 inline-block" />
+              <span className="text-xs font-mono tracking-widest text-indigo-700 font-semibold uppercase block">
+                04 / VERIFICATION
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Certificates
             </h2>
             <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mt-4 max-w-xs">
@@ -31,7 +34,7 @@ export const CertificatesSection: React.FC = () => {
             {/* 1. CERTIFICATES GRID */}
             <div>
               <div className="flex items-center gap-2 mb-5">
-                <span className="w-1.5 h-1.5 bg-slate-900 inline-block shrink-0" />
+                <span className="w-2 h-2 rounded-[2px] bg-gradient-to-r from-indigo-500 to-sky-500 inline-block shrink-0 shadow-xs" />
                 <h3 className="text-[11px] font-mono tracking-widest uppercase font-semibold text-slate-900">
                   TECHNICAL CERTIFICATIONS & COURSES
                 </h3>
@@ -41,7 +44,7 @@ export const CertificatesSection: React.FC = () => {
                 {CERTIFICATES_DATA.map((cert) => (
                   <div
                     key={cert.id}
-                    className="border border-slate-200 bg-white flex flex-col justify-between hover:border-slate-400 hover:shadow-sm transition-all duration-200 group"
+                    className="border border-slate-200/90 bg-white/95 backdrop-blur-xs flex flex-col justify-between hover:border-indigo-300 hover:shadow-2xl hover:shadow-indigo-500/10 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ease-out group rounded-xs transform-gpu will-change-transform"
                   >
                     <div>
                       {/* Certificate Image Thumbnail */}
@@ -73,8 +76,22 @@ export const CertificatesSection: React.FC = () => {
                           {cert.title}
                         </h4>
 
+                        {/* Scannable Pill Tags */}
+                        {cert.tags && cert.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-1.5 mt-2.5">
+                            {cert.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono tracking-wide bg-slate-100 text-slate-600 border border-slate-200/80"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+
                         {/* Concise 1-2 line summary */}
-                        <p className="text-xs text-slate-600 leading-relaxed mt-2 line-clamp-3">
+                        <p className="text-xs text-slate-600 leading-relaxed mt-2.5 line-clamp-3">
                           {cert.summary}
                         </p>
                       </div>
@@ -99,10 +116,13 @@ export const CertificatesSection: React.FC = () => {
               </div>
             </div>
 
+            {/* Subtle Divider between Certificates and Achievements */}
+            <hr className="border-t border-slate-200/80 my-8 sm:my-10" />
+
             {/* 2. ACHIEVEMENTS & PARTICIPATION SUBSECTION */}
-            <div className="pt-8 border-t border-slate-200">
+            <div>
               <div className="flex items-center gap-2 mb-5">
-                <span className="w-1.5 h-1.5 bg-slate-900 inline-block shrink-0" />
+                <span className="w-2 h-2 rounded-[2px] bg-gradient-to-r from-teal-500 to-sky-500 inline-block shrink-0 shadow-xs" />
                 <h3 className="text-[11px] font-mono tracking-widest uppercase font-semibold text-slate-900">
                   ACHIEVEMENTS & PARTICIPATION
                 </h3>
@@ -112,7 +132,7 @@ export const CertificatesSection: React.FC = () => {
                 {ACHIEVEMENTS_DATA.map((ach) => (
                   <div
                     key={ach.id}
-                    className="border border-slate-200 bg-white flex flex-col justify-between hover:border-slate-400 hover:shadow-sm transition-all duration-200 group"
+                    className="border border-slate-200/90 bg-white/95 backdrop-blur-xs flex flex-col justify-between hover:border-teal-300 hover:shadow-2xl hover:shadow-teal-500/10 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ease-out group rounded-xs transform-gpu will-change-transform"
                   >
                     <div>
                       {/* Document / Badge Thumbnail */}
@@ -149,8 +169,22 @@ export const CertificatesSection: React.FC = () => {
                           {ach.issuer}
                         </div>
 
+                        {/* Scannable Pill Tags */}
+                        {ach.tags && ach.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-1.5 mt-2.5">
+                            {ach.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono tracking-wide bg-slate-100 text-slate-600 border border-slate-200/80"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+
                         {/* Concise summary */}
-                        <p className="text-xs text-slate-600 leading-relaxed mt-2 line-clamp-3">
+                        <p className="text-xs text-slate-600 leading-relaxed mt-2.5 line-clamp-3">
                           {ach.summary}
                         </p>
                       </div>

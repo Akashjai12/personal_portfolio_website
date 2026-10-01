@@ -71,10 +71,13 @@ export const ContactSection: React.FC = () => {
           {/* Left Column */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <span className="text-xs font-mono tracking-widest text-slate-400 uppercase block mb-1.5">
-                06 / COMMUNICATION
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 inline-block" />
+                <span className="text-xs font-mono tracking-widest text-indigo-700 font-semibold uppercase block">
+                  06 / COMMUNICATION
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 Let's Connect
               </h2>
               <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mt-3 max-w-sm">
@@ -83,8 +86,9 @@ export const ContactSection: React.FC = () => {
             </div>
 
             {/* DIRECT CHANNELS - LOGO BUTTONS */}
-            <div className="mt-10 pt-6 border-t border-slate-100">
-              <span className="text-[10px] font-mono tracking-widest uppercase font-semibold text-slate-400 block mb-3">
+            <div className="mt-10 pt-6 border-t border-slate-200/80">
+              <span className="text-[10px] font-mono tracking-widest uppercase font-semibold text-indigo-900/80 block mb-3 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 inline-block" />
                 DIRECT SOCIAL & CONTACT
               </span>
 
@@ -142,14 +146,14 @@ export const ContactSection: React.FC = () => {
 
           {/* Right Column: Contact Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white p-2">
+            <div className="bg-white/95 backdrop-blur-xs p-6 sm:p-7 border border-indigo-100/90 shadow-md shadow-indigo-100/20 rounded-sm">
               <form onSubmit={handleSubmit} className="space-y-4">
                 
                 {/* Name */}
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-[10px] font-mono tracking-wider uppercase font-semibold text-slate-500 mb-1.5"
+                    className="block text-[10px] font-mono tracking-wider uppercase font-semibold text-slate-600 mb-1.5"
                   >
                     NAME
                   </label>
@@ -160,7 +164,7 @@ export const ContactSection: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your name"
-                    className="w-full px-3.5 py-3 bg-[#f0f3f8] border border-slate-200/80 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-800 transition-colors"
+                    className="w-full px-3.5 py-3 bg-[#f8fafc] border border-slate-200/90 rounded-xs text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all"
                   />
                 </div>
 
@@ -168,7 +172,7 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-[10px] font-mono tracking-wider uppercase font-semibold text-slate-500 mb-1.5"
+                    className="block text-[10px] font-mono tracking-wider uppercase font-semibold text-slate-600 mb-1.5"
                   >
                     EMAIL / CONTACT FIELD
                   </label>
@@ -179,7 +183,7 @@ export const ContactSection: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="name@example.com"
-                    className="w-full px-3.5 py-3 bg-[#f0f3f8] border border-slate-200/80 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-800 transition-colors"
+                    className="w-full px-3.5 py-3 bg-[#f8fafc] border border-slate-200/90 rounded-xs text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all"
                   />
                 </div>
 
@@ -187,7 +191,7 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-[10px] font-mono tracking-wider uppercase font-semibold text-slate-500 mb-1.5"
+                    className="block text-[10px] font-mono tracking-wider uppercase font-semibold text-slate-600 mb-1.5"
                   >
                     SHORT MESSAGE
                   </label>
@@ -198,20 +202,20 @@ export const ContactSection: React.FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Type your message here..."
-                    className="w-full px-3.5 py-3 bg-[#f0f3f8] border border-slate-200/80 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-800 transition-colors resize-y min-h-[120px]"
+                    className="w-full px-3.5 py-3 bg-[#f8fafc] border border-slate-200/90 rounded-xs text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all resize-y min-h-[120px]"
                   />
                 </div>
 
                 {/* Status Messages */}
                 {status === 'error' && (
-                  <div className="flex items-center gap-2 p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs">
+                  <div className="flex items-center gap-2 p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xs">
                     <AlertCircle className="w-4 h-4 shrink-0" />
                     <span>{errorMessage}</span>
                   </div>
                 )}
 
                 {status === 'success' && (
-                  <div className="flex items-center gap-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs animate-in fade-in">
+                  <div className="flex items-center gap-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs animate-in fade-in rounded-xs">
                     <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
                     <span>Thank you for reaching out! Your message has been received by Akash.</span>
                   </div>
@@ -222,7 +226,7 @@ export const ContactSection: React.FC = () => {
                   <button
                     type="submit"
                     disabled={status === 'submitting'}
-                    className="w-auto px-6 py-3 bg-[#122452] hover:bg-[#0c1836] disabled:opacity-70 text-white text-xs font-bold tracking-wider uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                    className="w-auto px-6 py-3 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 hover:from-indigo-900 hover:to-indigo-950 disabled:opacity-70 text-white text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:shadow-indigo-500/10 rounded-xs"
                   >
                     {status === 'submitting' ? (
                       <>

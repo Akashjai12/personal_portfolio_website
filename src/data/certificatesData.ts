@@ -10,6 +10,7 @@ export interface CertificateItem {
   accentColor: string;
   docCode: string;
   verifyUrl?: string;
+  tags?: string[];
 }
 
 export const CERTIFICATES_DATA: CertificateItem[] = [
@@ -23,6 +24,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     badgeLabel: 'Verified Credential',
     accentColor: 'indigo',
     docCode: 'GTK-PY-GENAI-2026',
+    tags: ['AI', 'Programming', 'LLMs'],
   },
   {
     id: 'cert-anthropic',
@@ -35,6 +37,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     badgeLabel: 'Anthropic Certified',
     accentColor: 'amber',
     docCode: 'ANTHROPIC-MCP-EDU',
+    tags: ['AI', 'Model Context Protocol', 'Architecture'],
   },
   {
     id: 'cert-infosys',
@@ -47,6 +50,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     badgeLabel: 'Infosys Springboard',
     accentColor: 'sky',
     docCode: 'INFOSYS-SB-PY01',
+    tags: ['Programming', 'Python'],
   },
 ];
 
@@ -62,6 +66,7 @@ export const ACHIEVEMENTS_DATA: CertificateItem[] = [
     badgeLabel: 'Campus Ambassador Offer',
     accentColor: 'emerald',
     docCode: 'IITB-EC-CA-2026',
+    tags: ['Leadership', 'Entrepreneurship'],
   },
   {
     id: 'ach-hackathon',
@@ -73,5 +78,6 @@ export const ACHIEVEMENTS_DATA: CertificateItem[] = [
     badgeLabel: 'Participant Badge',
     accentColor: 'slate',
     docCode: 'HACK-24H-NYX-CYBER',
+    tags: ['Hackathon', 'Cybersecurity', 'Team NYX'],
   },
 ];

@@ -9,10 +9,13 @@ export const ProgressSection: React.FC = () => {
           
           {/* Left Column */}
           <div className="lg:col-span-4">
-            <span className="text-xs font-mono tracking-widest text-slate-400 uppercase block mb-1.5">
-              05 / EVOLUTION
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 inline-block" />
+              <span className="text-xs font-mono tracking-widest text-indigo-700 font-semibold uppercase block">
+                05 / EVOLUTION
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               My Progress
             </h2>
             <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mt-4 max-w-xs">
@@ -29,7 +32,7 @@ export const ProgressSection: React.FC = () => {
               {/* 2025 Node */}
               <div className="flex items-start gap-4">
                 <div className="mt-1">
-                  <span className="w-2.5 h-2.5 border-2 border-slate-700 bg-white inline-block shrink-0" />
+                  <span className="w-3 h-3 rounded-full border-2 border-indigo-300 bg-white inline-block shrink-0 shadow-2xs" />
                 </div>
                 <div>
                   <span className="text-[10px] font-mono tracking-wider text-slate-500 font-semibold block uppercase">
@@ -47,10 +50,11 @@ export const ProgressSection: React.FC = () => {
               {/* 2026 Node (Current) */}
               <div className="flex items-start gap-4">
                 <div className="mt-1">
-                  <span className="w-2.5 h-2.5 bg-blue-600 ring-4 ring-blue-100 inline-block shrink-0" />
+                  <span className="w-3 h-3 rounded-full bg-gradient-to-tr from-indigo-600 to-sky-500 ring-4 ring-indigo-100 inline-block shrink-0 shadow-xs" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono tracking-wider text-blue-700 font-bold block uppercase">
+                  <span className="text-[10px] font-mono tracking-wider text-indigo-800 font-bold block uppercase flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-pulse inline-block" />
                     2026 · CURRENT STATUS
                   </span>
                   <h3 className="text-sm sm:text-[15px] font-bold text-slate-900 mt-0.5">
@@ -65,9 +69,9 @@ export const ProgressSection: React.FC = () => {
             </div>
 
             {/* Currently Learning / Exploring Box */}
-            <div className="border border-slate-200 bg-white/90 p-6 sm:p-7 shadow-xs">
+            <div className="border border-indigo-100/90 bg-white/95 backdrop-blur-xs p-6 sm:p-7 shadow-md shadow-indigo-100/20 rounded-sm">
               <div className="flex items-center gap-2 mb-5">
-                <span className="w-1.5 h-1.5 bg-blue-600 inline-block shrink-0" />
+                <span className="w-2 h-2 rounded-[2px] bg-gradient-to-r from-indigo-500 to-sky-500 inline-block shrink-0 shadow-xs" />
                 <h4 className="text-[11px] font-mono tracking-widest uppercase font-semibold text-slate-900">
                   CURRENTLY LEARNING / EXPLORING
                 </h4>
@@ -76,18 +80,18 @@ export const ProgressSection: React.FC = () => {
               <div className="flex flex-wrap gap-2.5">
                 {LEARNING_TAGS.map((tag, idx) => {
                   const tagColors = [
-                    'bg-indigo-50/80 text-indigo-800 border-indigo-200/80 hover:bg-indigo-100/70',
-                    'bg-blue-50/80 text-blue-800 border-blue-200/80 hover:bg-blue-100/70',
-                    'bg-teal-50/80 text-teal-800 border-teal-200/80 hover:bg-teal-100/70',
-                    'bg-sky-50/80 text-sky-800 border-sky-200/80 hover:bg-sky-100/70',
-                    'bg-emerald-50/80 text-emerald-800 border-emerald-200/80 hover:bg-emerald-100/70',
+                    'bg-indigo-50/80 text-indigo-900 border-indigo-200/80 hover:bg-indigo-100/80 hover:border-indigo-300',
+                    'bg-sky-50/80 text-sky-900 border-sky-200/80 hover:bg-sky-100/80 hover:border-sky-300',
+                    'bg-teal-50/80 text-teal-900 border-teal-200/80 hover:bg-teal-100/80 hover:border-teal-300',
+                    'bg-violet-50/80 text-violet-900 border-violet-200/80 hover:bg-violet-100/80 hover:border-violet-300',
+                    'bg-amber-50/80 text-amber-900 border-amber-200/80 hover:bg-amber-100/80 hover:border-amber-300',
                   ];
                   const colorClass = tagColors[idx % tagColors.length];
 
                   return (
                     <div
                       key={tag}
-                      className={`flex items-center gap-2 px-3 py-1.5 border rounded-sm text-xs font-medium transition-colors ${colorClass}`}
+                      className={`flex items-center gap-2 px-3 py-1.5 border rounded-full text-xs font-medium transition-all shadow-2xs hover:scale-105 ${colorClass}`}
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-current opacity-70 shrink-0" />
                       <span>{tag}</span>

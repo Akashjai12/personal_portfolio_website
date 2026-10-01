@@ -144,6 +144,58 @@ export const PROJECTS: Project[] = [
       techStack: ["React", "TypeScript", "Tailwind CSS", "GHG Protocol Standards", "Lucide React"],
       liveDemoType: "carbon-calc"
     }
+  },
+  {
+    id: "agentic-flow",
+    projectNumber: "PROJECT 04",
+    category: "AUTONOMOUS AGENTS",
+    statusBadge: "Active Architecture",
+    title: "AgenticFlow",
+    subtitle: "Autonomous Task Decomposition & Tool Use Engine",
+    schematicType: "agent-workflow",
+    description:
+      "AgenticFlow is an autonomous agent orchestration pipeline built with Anthropic's Model Context Protocol (MCP) and Python. It accepts natural-language objectives, breaks complex goals into verifiable subtasks, selects appropriate external tools, and verifies execution results through a self-correcting feedback loop.",
+    domainOrScopeLabel: "Focus",
+    domainOrScopeValue: "AI Agents · Anthropic MCP · Task Decomposition",
+    fullDetails: {
+      overview:
+        "Traditional LLM applications execute single prompts statically. AgenticFlow coordinates autonomous agents capable of independent multi-step problem solving. Leveraging the Model Context Protocol, the agent dynamically interrogates external tool servers (databases, calculation engines, and file systems) while validating intermediate invariants.",
+      keyFeatures: [
+        "Model Context Protocol (MCP) Client: Standardized JSON-RPC discovery and dynamic tool attachment over local servers.",
+        "Deterministic Reflection Loop: Evaluates intermediate action outputs against goal criteria before deciding the next step.",
+        "Fault-Tolerant Re-Planning: Automatically retries alternate tool parameters upon API rate limits or schema mismatches.",
+        "Transparent Trace Logging: Visualizes step-by-step thinking tokens, selected tools, and structured outcomes."
+      ],
+      technicalArchitecture:
+        "Core reasoning cycle: Goal Parsing → Subtask Queue → Tool Schema Discovery (MCP) → Action Dispatch → Output Invariant Check → Goal Completion.",
+      techStack: ["Python", "Anthropic MCP SDK", "FastAPI", "React", "TypeScript", "Tailwind CSS"]
+    }
+  },
+  {
+    id: "nexus-automations",
+    projectNumber: "PROJECT 05",
+    category: "AI AUTOMATION & INTEGRATION",
+    statusBadge: "Engineering Build",
+    title: "Nexus Automations",
+    subtitle: "Intelligent Document & Workflow Automation Pipeline",
+    schematicType: "pipeline-automation",
+    description:
+      "Nexus Automations bridges unstructured real-world inputs (PDF invoices, email inquiries, scanned technical datasheets) directly into structured, verified database entries using multimodal LLM extraction, automated anomaly detection, and webhook dispatch.",
+    domainOrScopeLabel: "Domain",
+    domainOrScopeValue: "Workflow Automation · Multimodal Extraction · Webhooks",
+    fullDetails: {
+      overview:
+        "Manual data entry and validation between disjointed platforms waste hundreds of engineering hours. Nexus Automations acts as an intelligent intermediary pipeline, extracting structured JSON schemas from arbitrary inputs with strict validation guarantees before pushing to destination APIs.",
+      keyFeatures: [
+        "Multimodal Document Parser: Ingests raw PDFs, images, and emails using visual and textual grounding.",
+        "Schema Enforcer: Automatically validates extracted key-value pairs against Pydantic type definitions.",
+        "Automated Exception Handling: Flags low-confidence extractions into human-in-the-loop review queues.",
+        "Webhook Dispatcher: Dispatches verified records seamlessly into external databases and collaboration channels."
+      ],
+      technicalArchitecture:
+        "Event Trigger → Ingestion Queue → Multimodal LLM Extraction → Pydantic Schema Validation → Webhook Dispatcher.",
+      techStack: ["Python", "FastAPI", "Pydantic", "React", "Tailwind CSS", "Webhook Integration"]
+    }
   }
 ];
 

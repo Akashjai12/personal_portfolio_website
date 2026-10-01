@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X, Calendar, Building2, ShieldCheck, ExternalLink } from 'lucide-react';
 import { CertificateItem } from '../data/certificatesData';
 import { CertificateThumbnail } from './CertificateThumbnail';
@@ -9,19 +9,74 @@ interface CertificateModalProps {
 }
 
 export const CertificateModal: React.FC<CertificateModalProps> = ({ item, onClose }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
+    if (!item) return;
+
+    // Save previous active element to restore focus on close
+    previouslyFocusedElementRef.current = document.activeElement as HTMLElement;
+
+    // Find first focusable element or default to close button
+    const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const modalElement = modalRef.current;
+    
+    if (modalElement) {
+      const focusableElements = modalElement.querySelectorAll<HTMLElement>(focusableSelector);
+      if (focusableElements.length > 0) {
+        focusableElements[0].focus();
+      }
+    }
+
     const handleKeyDown = (e: KeyboardEvent) => {
+      // 1. Keyboard Navigation: Close on Escape key
       if (e.key === 'Escape') {
+        e.preventDefault();
         onClose();
+        return;
+      }
+
+      // 2. Focus Trapping: Cycle focus within modal on Tab and Shift+Tab
+      if (e.key === 'Tab') {
+        if (!modalElement) return;
+        const focusableElements = Array.from(
+          modalElement.querySelectorAll<HTMLElement>(focusableSelector)
+        ).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
+
+        if (focusableElements.length === 0) {
+          e.preventDefault();
+          return;
+        }
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          // Backward tab: if on first element, wrap around to last
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          // Forward tab: if on last element, wrap around to first
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
       }
     };
-    if (item) {
-      window.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
-    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
+      if (previouslyFocusedElementRef.current && typeof previouslyFocusedElementRef.current.focus === 'function') {
+        previouslyFocusedElementRef.current.focus();
+      }
     };
   }, [item, onClose]);
 
@@ -33,9 +88,12 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ item, onClos
       onClick={onClose}
     >
       <div
-        className="bg-white border border-slate-200 shadow-2xl w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden text-slate-900 animate-in zoom-in-95 duration-150"
+        ref={modalRef}
+        className="bg-white border border-slate-200 shadow-2xl w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden text-slate-900 animate-in zoom-in-95 duration-150 focus:outline-none"
         role="dialog"
         aria-modal="true"
+        aria-labelledby="certificate-modal-title"
+        tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
@@ -51,8 +109,8 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ item, onClos
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-900 hover:bg-slate-200 transition-colors cursor-pointer"
-            aria-label="Close modal"
+            className="p-1.5 text-slate-400 hover:text-slate-900 hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-colors cursor-pointer rounded-xs"
+            aria-label="Close modal (Escape)"
           >
             <X className="w-5 h-5" />
           </button>
@@ -72,7 +130,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ item, onClos
                 <span className="text-[10px] font-mono uppercase text-slate-400 block">
                   Title
                 </span>
-                <h3 className="text-sm sm:text-base font-bold text-slate-900">
+                <h3 id="certificate-modal-title" className="text-sm sm:text-base font-bold text-slate-900">
                   {item.title}
                 </h3>
               </div>
@@ -105,6 +163,19 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ item, onClos
             <div className="pt-2 text-xs sm:text-[13px] text-slate-600 leading-relaxed border-t border-slate-200/80">
               {item.summary}
             </div>
+
+            {item.tags && item.tags.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 pt-2 border-t border-slate-200/80">
+                {item.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono tracking-wide bg-slate-100 text-slate-600 border border-slate-200/80"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
@@ -115,7 +186,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ item, onClos
           </span>
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
+            className="px-4 py-2 bg-slate-900 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 text-white text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
           >
             Close View
           </button>
